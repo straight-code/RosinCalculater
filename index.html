@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yield and Loss Calculator</title>
+    <!-- Bootstrap CSS -->
+     <style>
+        .mycontainer {
+            border: 5px soild #fff;
+            border-radius: 8px;
+            background-color: #212121;
+            color: #fff;
+            margin: 250px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px;
+        }
+        .grid-item {
+            padding: 20px;
+            text-align: center;
+        }
+     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        // JavaScript function to calculate yield and loss
+        function calculateYieldAndLoss() {
+            // Get the input values
+            let startWeight = parseFloat(document.getElementById("startWeight").value);
+            let returnWeight = parseFloat(document.getElementById("returnWeight").value);
+            
+            // Validate the input
+            if (isNaN(startWeight) || isNaN(returnWeight) || startWeight <= 0 || returnWeight < 0) {
+                alert("Please enter valid positive numbers.");
+                return;
+            }
+
+            // Calculate the yield and loss
+            let percentageYield = (returnWeight / startWeight) * 100;
+            let totalLoss = startWeight - returnWeight;
+
+            // Display the results
+            document.getElementById("percentageYield").textContent = percentageYield.toFixed(2) + "%";
+            document.getElementById("totalLoss").textContent = totalLoss.toFixed(2) + " grams";
+        }
+    </script>
+</head>
+<body style="background-color: #292929;">
+    <div class="mycontainer">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Yield and Loss</h1>
+        <h1 class="text-center mb-4">Calculator</h1>
+
+        <br>
+        <br>
+
+        <!-- Form to take starting weight and return weight inputs -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="startWeight" class="form-label">Starting Weight (grams)</label>
+                    <input type="number" class="form-control" id="startWeight" placeholder="Enter starting weight">
+                </div>
+
+                <div class="mb-3">
+                    <label for="returnWeight" class="form-label">Return Weight (grams)</label>
+                    <input type="number" class="form-control" id="returnWeight" placeholder="Enter return weight">
+                </div>
+
+                <!-- Button to trigger calculation -->
+                <button class="btn btn-primary w-100" onclick="calculateYieldAndLoss()">Calculate</button>
+                <br>
+                <br>
+                <br>
+                <br>
+                <hr>
+            
+                <!-- Output section -->
+                <div class="text-center mt-4">
+                    <h3>Results</h3>
+                    <hr>
+                    <div class="grid">
+                        <div class="grid-item">
+                    <p><strong>Yield:</strong> <span style="color: #00ed00;font-size: 25px;font-weight: 900;" id="percentageYield">0%</span></p>
+                    </div>
+                    <div class="grid-item">
+                    <p><strong>Loss:</strong> <span style="color: red;font-size: 25px;font-weight: 900;" id="totalLoss">0 grams</span></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
